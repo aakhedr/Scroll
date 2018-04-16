@@ -13,7 +13,13 @@ class ScrollViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var searchController: UISearchController!
-    fileprivate var intitialScrollViewContentOffset: CGPoint!
+    
+    // To be set only once in viewDidAppear
+    fileprivate var initialScrollViewContentOffset: CGPoint! {
+        didSet {
+            initialScrollViewContentOffset = oldValue ?? initialScrollViewContentOffset
+        }
+    }
     
     fileprivate var datasource = [String]()
     fileprivate var searchResults = [String]()
@@ -35,12 +41,12 @@ class ScrollViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        intitialScrollViewContentOffset = tableView.contentOffset
+        initialScrollViewContentOffset = tableView.contentOffset
     }
     
     // MARK:- Scroll up
     @IBAction func scrollUp(_ sender: UIBarButtonItem) {
-        tableView.setContentOffset(intitialScrollViewContentOffset, animated: true)
+        tableView.setContentOffset(initialScrollViewContentOffset, animated: true)
     }
     
     // MARK:- Scroll down
