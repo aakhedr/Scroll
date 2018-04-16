@@ -40,7 +40,6 @@ class ScrollViewController: UIViewController {
     // MARK:- Scroll down
     @IBAction func scrollDown(_ sender: UIBarButtonItem) {
         let bottomPoint = CGPoint(x: 0, y: tableView.contentSize.height - tableView.bounds.height)
-        print(bottomPoint.y)
         tableView.setContentOffset(bottomPoint, animated: true)
     }
 }
