@@ -46,7 +46,12 @@ class ScrollViewController: UIViewController {
     
     // MARK:- Scroll up
     @IBAction func scrollUp(_ sender: UIBarButtonItem) {
-        tableView.setContentOffset(initialScrollViewContentOffset, animated: true)
+        if searchController.isActive {
+            // As a preacaution although bar button item is not available on search view
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        } else {
+            tableView.setContentOffset(initialScrollViewContentOffset, animated: true)
+        }
     }
     
     // MARK:- Scroll down
